@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2022 a las 00:25:50
+-- Tiempo de generación: 11-10-2022 a las 20:19:16
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -33,6 +33,15 @@ CREATE TABLE `auto` (
   `duenio` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `auto`
+--
+
+INSERT INTO `auto` (`id_auto`, `patente`, `duenio`) VALUES
+(17, 'LDE061', 'Fernando Jesús Lagos'),
+(18, 'IEL603', 'Florencia Petruzzella'),
+(19, 'AAA000', 'Florencia Arispe');
+
 -- --------------------------------------------------------
 
 --
@@ -45,10 +54,37 @@ CREATE TABLE `service` (
   `fecha` date NOT NULL,
   `km` double NOT NULL,
   `km_prox_service` double NOT NULL,
-  `gastos_respuestos` double NOT NULL,
-  `gastos_mo` int(11) NOT NULL,
-  `descripcion` int(11) NOT NULL
+  `gastos_repuestos` double NOT NULL,
+  `gastos_mo` double NOT NULL,
+  `descripcion` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `service`
+--
+
+INSERT INTO `service` (`id_service`, `id_auto`, `fecha`, `km`, `km_prox_service`, `gastos_repuestos`, `gastos_mo`, `descripcion`) VALUES
+(16, 17, '2022-10-21', 98000, 135000, 3500, 10000, 'Revisión general'),
+(21, 17, '0000-00-00', 0, 0, 0, 0, 'Revisión general!!!!!!!!!!!!');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id_user`, `email`, `password`) VALUES
+(1, 'admin@gmail.com', '$2a$12$DvEvbiWOSGIcGSTcgM94Nu.bURCLbpAUAacT53bq1rBXj7a5ifyJ.');
 
 --
 -- Índices para tablas volcadas
@@ -68,6 +104,12 @@ ALTER TABLE `service`
   ADD KEY `id_auto` (`id_auto`);
 
 --
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -75,13 +117,19 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT de la tabla `auto`
 --
 ALTER TABLE `auto`
-  MODIFY `id_auto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_auto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `service`
 --
 ALTER TABLE `service`
-  MODIFY `id_service` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

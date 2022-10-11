@@ -8,6 +8,7 @@ class AutoView {
         $this->smarty = new Smarty(); // inicializo Smarty
     }
 
+
     function showAutos($autos) {
         // asigno variables al tpl smarty
         $this->smarty->assign('count', count($autos)); 
@@ -16,5 +17,18 @@ class AutoView {
         // mostrar el tpl
         $this->smarty->display('autosList.tpl');
     }
+
+    function editAuto($auto){
+        $this->smarty->assign('auto', $auto);
+
+        $this->smarty->display('form_edit_auto.tpl');
+    }
+
+    //LOGIN y HOME
+
+    function showHome() {
+        $this->smarty->display('home.tpl');
+    }
+
 }
 ?>
