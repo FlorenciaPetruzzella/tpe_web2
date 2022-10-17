@@ -16,29 +16,38 @@ class AutoModel{
         return $autos;
     }
 
-    public function insertAuto($patente, $duenio) {
-        $query = $this->db->prepare("INSERT INTO `auto`(`patente`, `duenio`) VALUES (?, ?)");
-        $query->execute([$patente, $duenio]);
+    public function getAutobyId($id) {
+        $query = $this->db->prepare("SELECT * FROM `auto` WHERE `id_auto`=?");
+        $query->execute([$id]);
+
+        $auto = $query->fetch(PDO::FETCH_OBJ);
+        return $auto;
+    }
+
+    public function insertAuto($patente, $duenio, $modelo) {
+        $query = $this->db->prepare('INSERT INTO `auto`(`patente`, `duenio`, `modelo`) VALUES (?, ?, ?)');
+        $query->execute([$patente, $duenio, $modelo]);
 
         return $this->db->lastInsertId();
     }
 
-    function deleteAutoById($id) {
+    public function deleteAutoById($id) {
         $query = $this->db->prepare('DELETE FROM `auto` WHERE `id_auto` = ?');
         $query->execute([$id]);
     }
 
-    function editAutoById($id) {
-        $query = $this->db->prepare("SELECT * FROM `auto` WHERE `id_auto` = ?");
+    public function editAutoById($id) {
+        $query = $this->db->prepare('SELECT * FROM `auto` WHERE `id_auto` = ?');
         $query->execute([$id]);
 
         $auto = $query->fetch(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
         return $auto;
     }
 
-    function updateAutoById($id, $patente, $duenio) {
-        $query = $this->db->prepare("UPDATE `auto` SET `patente`= ? ,`duenio`= ? WHERE `id_auto` = ? ");
-        $query->execute([$patente,$duenio,$id]);
+    public function updateAutoById($id, $patente, $duenio, $modelo) {
+        $query = $this->db->prepare('UPDATE `auto` SET `patente`= ? , `duenio`= ?, `modelo` = ? 
+                                    WHERE `id_auto` = ? ');
+        $query->execute([$patente,$duenio,$modelo,$id]);
     }
 
 }

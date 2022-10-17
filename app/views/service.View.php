@@ -5,16 +5,22 @@ class ServiceView {
     private $smarty;
 
     public function __construct() {
-        $this->smarty = new Smarty(); // inicializo Smarty
+        $this->smarty = new Smarty();
     }
 
-    function showServices($services) {
-        // asigno variables al tpl smarty
+    function showServices($allServices){
+        $this->smarty->assign('allServices', $allServices); 
+
+        $this->smarty->display('serviceList.tpl');
+    }
+
+    function showServicesById($services, $auto, $id) {
         $this->smarty->assign('count', count($services)); 
         $this->smarty->assign('services', $services);
-
-        // mostrar el tpl
-        $this->smarty->display('serviceList.tpl');
+        $this->smarty->assign('id', $id);
+        $this->smarty->assign('auto', $auto);
+        
+        $this->smarty->display('serviceListById.tpl');
     }
 
     function editService($service){

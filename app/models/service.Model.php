@@ -20,21 +20,28 @@ class ServiceModel{
         $query = $this->db->prepare("INSERT INTO `service`(`id_auto`, `fecha`, `km`,`km_prox_service`,
                                     `gastos_repuestos`,`gastos_mo`,`descripcion`) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $query->execute([$id, $fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion]);
-
         return $this->db->lastInsertId();
-    }
-
+    } 
 
     public function deleteServiceById($id){
         $query = $this->db->prepare('DELETE FROM `service` WHERE `id_service` = ?');
         $query->execute([$id]);
     }
 
+    public function getId_auto($id){
+        $query = $this->db->prepare('SELECT `id_auto` FROM `service` WHERE `id_service` = ?');
+        $query->execute([$id]);
+
+        $query->fetch(PDO::FETCH_NUM); // devuelve un arreglo de objetos
+        return $query;
+    }
+
+
     function editServiceById($id) {
         $query = $this->db->prepare("SELECT * FROM `service` WHERE `id_service` = ?");
         $query->execute([$id]);
 
-        $service = $query->fetch(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+        $service = $query->fetch(PDO::FETCH_OBJ);
         return $service;
     }
 
@@ -44,5 +51,13 @@ class ServiceModel{
                                     `gastos_repuestos`= ? ,`gastos_mo`= ? ,`descripcion`= ? 
                                     WHERE `id_service` = ? ");
         $query->execute([$fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion,$id]);
+    }
+
+    function getServicesAutos(){
+        $query = $this->db->prepare("SELECT A. *, B. * FROM `auto` A INNER JOIN `service` B ON A.id_auto = B.id_auto");
+        $query->execute();
+
+        $allServices = $query->fetchAll(PDO::FETCH_OBJ); 
+        return $allServices;
     }
 }

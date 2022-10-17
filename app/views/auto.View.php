@@ -24,11 +24,6 @@ class AutoView {
         $this->smarty->display('form_edit_auto.tpl');
     }
 
-    //LOGIN y HOME
-
-    function showHome() {
-        $this->smarty->display('home.tpl');
-    }
-
+    
 }
 ?>

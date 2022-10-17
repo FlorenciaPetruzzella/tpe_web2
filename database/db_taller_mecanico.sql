@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2022 a las 20:19:16
+-- Tiempo de generación: 12-10-2022 a las 15:58:52
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -30,17 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `auto` (
   `id_auto` int(11) NOT NULL,
   `patente` varchar(15) NOT NULL,
-  `duenio` varchar(45) NOT NULL
+  `duenio` varchar(45) NOT NULL,
+  `modelo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `auto`
 --
 
-INSERT INTO `auto` (`id_auto`, `patente`, `duenio`) VALUES
-(17, 'LDE061', 'Fernando Jesús Lagos'),
-(18, 'IEL603', 'Florencia Petruzzella'),
-(19, 'AAA000', 'Florencia Arispe');
+INSERT INTO `auto` (`id_auto`, `patente`, `duenio`, `modelo`) VALUES
+(17, 'LDE061', 'Fernando Jesús Lagos', ''),
+(18, 'EEA420', 'L-Gante', ''),
+(19, 'AAA000', 'Maria Florencia Arispe', '');
 
 -- --------------------------------------------------------
 
@@ -64,8 +65,7 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`id_service`, `id_auto`, `fecha`, `km`, `km_prox_service`, `gastos_repuestos`, `gastos_mo`, `descripcion`) VALUES
-(16, 17, '2022-10-21', 98000, 135000, 3500, 10000, 'Revisión general'),
-(21, 17, '0000-00-00', 0, 0, 0, 0, 'Revisión general!!!!!!!!!!!!');
+(16, 17, '2022-10-21', 98000, 135000, 3500, 10000, 'Revisión general, ver perdida de agua.');
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `email`, `password`) VALUES
-(1, 'admin@gmail.com', '$2a$12$DvEvbiWOSGIcGSTcgM94Nu.bURCLbpAUAacT53bq1rBXj7a5ifyJ.');
+(1, 'admin@gmail.com', '$2a$12$duuwyupnvVIi/t5a2QLY0e4UIbM3AN8gHrCFaJ25AHnZvz9in7ht6');
 
 --
 -- Índices para tablas volcadas
@@ -117,13 +117,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `auto`
 --
 ALTER TABLE `auto`
-  MODIFY `id_auto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_auto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `service`
 --
 ALTER TABLE `service`
-  MODIFY `id_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `user`

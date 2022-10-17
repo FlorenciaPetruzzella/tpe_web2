@@ -6,14 +6,12 @@ require_once './app/helpers/auth.Helper.php';
 class AutoController {
     private $model;
     private $view;
+    private $authHelper;
 
     public function __construct() {
         $this->model = new AutoModel();
         $this->view = new AutoView();
-
-         // barrera de seguridad
-         $this->authHelper = new AuthHelper();
-         //$authHelper->checkLoggedIn();
+        $this->authHelper = new AuthHelper();
     }
 
     public function showAutos() {
@@ -23,38 +21,47 @@ class AutoController {
     }
 
     public function addAuto() {
-        $patente = $_POST['patente'];
-        $duenio = $_POST['duenio'];
+        if (isset($_POST['patente']) && isset($_POST['duenio']) && isset($_POST['modelo'])) {
+            $this->authHelper->checkLoggedIn();
+        
+            $patente = $_POST['patente'];
+            $duenio = $_POST['duenio'];
+            $modelo = $_POST['modelo'];
 
-        $this->model->insertAuto($patente, $duenio);
-        header("Location: " . BASE_URL .'list'); 
+            $this->model->insertAuto($patente, $duenio, $modelo);
+            header("Location: " . BASE_URL .'listAutos'); 
+        }
+        
+        else{
+            var_dump("Complete todos los campos");
+            die();
+        }
     }
 
     public function deleteAuto($id) {
         $this->model->deleteAutoById($id);
-        header("Location: " . BASE_URL .'list'); 
+        header("Location: " . BASE_URL .'listAutos'); 
     }
 
     public function editAuto($id) {
         session_start();
         $auto = $this->model->editAutoById($id);
         $this->view->editAuto($auto);
-        //header("Location: " . BASE_URL . 'list'); 
     }
 
     public function updateAuto($id) {
-        session_start();
-        $patente = $_POST['patente'];
-        $duenio = $_POST['duenio'];
-        $this->model->updateAutoById($id,$patente,$duenio);
-        header("Location: " . BASE_URL . "list");
-    }
+        if (isset($_POST['patente']) && isset($_POST['duenio']) && isset($_POST['modelo'])) {
+            $this->authHelper->checkLoggedIn();
 
+            session_start();
+            $patente = $_POST['patente'];
+            $duenio = $_POST['duenio'];
+            $modelo = $_POST['modelo'];
 
-    //Section->HOME
-    public function showHome() {
-        session_start();
-        $this->view->showHome();
+            $this->model->updateAutoById($id,$patente,$duenio,$modelo);
+
+            header("Location: " . BASE_URL . 'listAutos');
+        }
     }
 
 }

@@ -2,6 +2,8 @@
 require_once './app/controllers/auto.Controller.php';
 require_once './app/controllers/service.Controller.php';
 require_once './app/controllers/auth.Controller.php';
+require_once './app/controllers/section.Controller.php';
+
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -15,8 +17,8 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'home':
-        $autoController = new AutoController();
-        $autoController->showHome();
+        $sectionController = new SectionController();
+        $sectionController->showHome();
         break;
     case 'login':
         $authController = new AuthController();
@@ -30,10 +32,14 @@ switch ($params[0]) {
         $authController = new AuthController();
         $authController->validateUser();
         break;    
-    case 'list':
+    case 'listAutos':
         $autoController = new AutoController();
         $autoController->showAutos();
         break;
+    case 'listServices':
+        $serviceController = new ServiceController();
+        $serviceController->showServices();
+        break;    
     case 'add':   
         $autoController = new AutoController();            
         $autoController->addAuto();
@@ -51,7 +57,8 @@ switch ($params[0]) {
     case 'deleteService': 
         $serviceController = new ServiceController();           
         $id = $params[1];
-        $serviceController->deleteService($id);
+        $id_auto = $params[2];
+        $serviceController->deleteService($id, $id_auto);
         break;
     case 'editAuto':  
         $autoController = new AutoController();        
@@ -71,12 +78,13 @@ switch ($params[0]) {
     case 'updateService':   
         $serviceController = new ServiceController();          
         $id = $params[1];
-        $serviceController->updateService($id);
+        $id_auto = $params[2];
+        $serviceController->updateService($id, $id_auto);
         break;
     case 'showServices':  
         $serviceController = new ServiceController();      
         $id = $params[1];
-        $serviceController->showServices($id);
+        $serviceController->showServicesById($id);
         break;
     default:
         echo('404 Page not found');
