@@ -5,7 +5,7 @@ class SectionView {
     private $smarty;
 
     public function __construct() {
-        $this->smarty = new Smarty(); // inicializo Smarty
+        $this->smarty = new Smarty();
     }
 
     public function showHome() {

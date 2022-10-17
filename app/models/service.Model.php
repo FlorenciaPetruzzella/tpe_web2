@@ -12,7 +12,7 @@ class ServiceModel{
         $query = $this->db->prepare("SELECT * FROM `service` WHERE `id_auto`=?");
         $query->execute([$id]);
 
-        $services = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+        $services = $query->fetchAll(PDO::FETCH_OBJ); 
         return $services;
     }
 
@@ -32,7 +32,7 @@ class ServiceModel{
         $query = $this->db->prepare('SELECT `id_auto` FROM `service` WHERE `id_service` = ?');
         $query->execute([$id]);
 
-        $query->fetch(PDO::FETCH_NUM); // devuelve un arreglo de objetos
+        $query->fetch(PDO::FETCH_NUM);
         return $query;
     }
 

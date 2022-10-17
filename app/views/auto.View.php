@@ -5,16 +5,14 @@ class AutoView {
     private $smarty;
 
     public function __construct() {
-        $this->smarty = new Smarty(); // inicializo Smarty
+        $this->smarty = new Smarty();
     }
 
 
     public function showAutos($autos) {
-        // asigno variables al tpl smarty
         $this->smarty->assign('count', count($autos)); 
         $this->smarty->assign('autos', $autos);
 
-        // mostrar el tpl
         $this->smarty->display('autosList.tpl');
     }
 
@@ -23,7 +21,5 @@ class AutoView {
 
         $this->smarty->display('form_edit_auto.tpl');
     }
-
-    
 }
 ?>

@@ -12,7 +12,7 @@ class AutoModel{
         $query = $this->db->prepare("SELECT * FROM `auto`");
         $query->execute();
 
-        $autos = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+        $autos = $query->fetchAll(PDO::FETCH_OBJ);
         return $autos;
     }
 
@@ -40,7 +40,7 @@ class AutoModel{
         $query = $this->db->prepare('SELECT * FROM `auto` WHERE `id_auto` = ?');
         $query->execute([$id]);
 
-        $auto = $query->fetch(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+        $auto = $query->fetch(PDO::FETCH_OBJ);
         return $auto;
     }
 
