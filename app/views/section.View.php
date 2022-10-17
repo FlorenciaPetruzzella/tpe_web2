@@ -8,7 +8,7 @@ class SectionView {
         $this->smarty = new Smarty(); // inicializo Smarty
     }
 
-    function showHome() {
+    public function showHome() {
         $this->smarty->display('home.tpl');
     }
 

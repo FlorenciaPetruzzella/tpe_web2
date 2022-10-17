@@ -8,13 +8,13 @@ class ServiceView {
         $this->smarty = new Smarty();
     }
 
-    function showServices($allServices){
+    public function showServices($allServices){
         $this->smarty->assign('allServices', $allServices); 
 
         $this->smarty->display('serviceList.tpl');
     }
 
-    function showServicesById($services, $auto, $id) {
+    public function showServicesById($services, $auto, $id) {
         $this->smarty->assign('count', count($services)); 
         $this->smarty->assign('services', $services);
         $this->smarty->assign('id', $id);
@@ -23,7 +23,7 @@ class ServiceView {
         $this->smarty->display('serviceListById.tpl');
     }
 
-    function editService($service){
+    public function editService($service){
         $this->smarty->assign('service', $service);
 
         $this->smarty->display('form_edit_service.tpl');

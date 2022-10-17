@@ -9,7 +9,7 @@ class AutoView {
     }
 
 
-    function showAutos($autos) {
+    public function showAutos($autos) {
         // asigno variables al tpl smarty
         $this->smarty->assign('count', count($autos)); 
         $this->smarty->assign('autos', $autos);
@@ -18,7 +18,7 @@ class AutoView {
         $this->smarty->display('autosList.tpl');
     }
 
-    function editAuto($auto){
+    public function editAuto($auto){
         $this->smarty->assign('auto', $auto);
 
         $this->smarty->display('form_edit_auto.tpl');

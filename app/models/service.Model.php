@@ -37,7 +37,7 @@ class ServiceModel{
     }
 
 
-    function editServiceById($id) {
+    public function editServiceById($id) {
         $query = $this->db->prepare("SELECT * FROM `service` WHERE `id_service` = ?");
         $query->execute([$id]);
 
@@ -45,7 +45,7 @@ class ServiceModel{
         return $service;
     }
 
-    function editServiceByIdList($id) {
+    public function editServiceByIdList($id) {
         $query = $this->db->prepare("SELECT A. *, B. * FROM `auto` A INNER JOIN `service` B ON A.id_auto = B.id_auto");
         $query->execute([$id]);
 
@@ -54,14 +54,14 @@ class ServiceModel{
     }
 
     
-    function updateServiceById($id, $fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion) {
+    public function updateServiceById($id, $fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion) {
         $query = $this->db->prepare("UPDATE `service` SET `fecha`= ? ,`km`= ?, `km_prox_service`= ?,
                                     `gastos_repuestos`= ? ,`gastos_mo`= ? ,`descripcion`= ? 
                                     WHERE `id_service` = ? ");
         $query->execute([$fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion,$id]);
     }
 
-    function getServicesAutos(){
+    public function getServicesAutos(){
         $query = $this->db->prepare("SELECT A. *, B. * FROM `auto` A INNER JOIN `service` B ON A.id_auto = B.id_auto");
         $query->execute();
 
