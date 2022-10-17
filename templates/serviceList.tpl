@@ -21,13 +21,11 @@
                     <td>{$allService->km}</td>
                     <td>{$allService->km_prox_service}</td>
                     <td>{$allService->gastos_repuestos}</td>
-                    <td>{$allService->gastos_repuestos}</td>
+                    <td>{$allService->gastos_mo}</td>
                     <td>{$allService->descripcion}</td>
                     <td>
                         {if isset($smarty.session.USER_ID)}
-                            <a href='editService/{$allService->id_service}' type='button'
-                                class='btn btn-success btn-sm'>Editar</a>
-                            <a href='deleteService/{$allService->id_service}/{$allService->id_auto}' type='button'
+                            <a href='deleteServiceList/{$allService->id_service}/{$allService->id_auto}' type='button'
                                 class='btn btn-danger btn-sm'>Borrar</a>
                         {/if}
                     </td>

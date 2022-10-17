@@ -1,10 +1,30 @@
 {include file="header.tpl"}
 
-<!-- lista de services de un auto específico-->
 <div class="item-body">
   <div class="parrafo">
     <p>Mostrando services ({$count}) de <b>{$auto->duenio}</b> - <b>{$auto->patente}</b> - <b>{$auto->modelo}</b> </p>
   </div>
+<div>
+
+{if isset($smarty.session.USER_ID)}
+  <div class="item-body">
+    <p>
+      <a class="btn btn-secondary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button"
+        aria-expanded="false" aria-controls="collapseExample">
+        Agregar Service
+      </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        {include file="form_alta_service.tpl"}
+      </div>
+    </div>
+  </div>
+{/if}
+
+
+<!-- lista de services de un auto específico-->
+<div class="item-body">
   <ul class="list-group">
     {foreach from=$services item=$service}
       <li class="list-group-item justify-content-between align-items-center">
@@ -28,21 +48,6 @@
 
 <br>
 
-{if isset($smarty.session.USER_ID)}
-  <div class="item-body">
-    <p>
-      <a class="btn btn-secondary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button"
-        aria-expanded="false" aria-controls="collapseExample">
-        Agregar Service
-      </a>
-    </p>
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        {include file="form_alta_service.tpl"}
-      </div>
-    </div>
-  </div>
-{/if}
 
 
 {include file="footer.tpl"}

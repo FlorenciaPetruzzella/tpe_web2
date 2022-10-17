@@ -60,6 +60,12 @@ switch ($params[0]) {
         $id_auto = $params[2];
         $serviceController->deleteService($id, $id_auto);
         break;
+    case 'deleteServiceList': 
+        $serviceController = new ServiceController();           
+        $id = $params[1];
+        $id_auto = $params[2];
+        $serviceController->deleteServiceList($id, $id_auto);
+        break;
     case 'editAuto':  
         $autoController = new AutoController();        
         $id = $params[1];

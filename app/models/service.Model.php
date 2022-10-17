@@ -45,6 +45,14 @@ class ServiceModel{
         return $service;
     }
 
+    function editServiceByIdList($id) {
+        $query = $this->db->prepare("SELECT A. *, B. * FROM `auto` A INNER JOIN `service` B ON A.id_auto = B.id_auto");
+        $query->execute([$id]);
+
+        $services = $query->fetch(PDO::FETCH_OBJ);
+        return $services;
+    }
+
     
     function updateServiceById($id, $fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion) {
         $query = $this->db->prepare("UPDATE `service` SET `fecha`= ? ,`km`= ?, `km_prox_service`= ?,

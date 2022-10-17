@@ -62,11 +62,19 @@ class ServiceController {
         header("Location: " . BASE_URL . 'showServices/' .$id_auto); 
     }
 
+    public function deleteServiceList($id, $id_auto) {
+        $this->model->deleteServiceById($id);
+
+        header("Location: " . BASE_URL . 'listServices'); 
+    }
+
+
     public function editService($id) {
         session_start();
         $service = $this->model->editServiceById($id);
         $this->view->editService($service);
     }
+
 
     public function updateService($id, $id_auto) {
         if (isset($_POST['fecha']) && isset($_POST['km']) && isset($_POST['km_prox_service']) &&
@@ -85,7 +93,6 @@ class ServiceController {
         header("Location: " . BASE_URL . 'showServices/' .$id_auto);  
         }
     }
-
 }
 
 
