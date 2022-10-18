@@ -16,6 +16,12 @@ class AutoView {
         $this->smarty->display('autosList.tpl');
     }
 
+    public function deleteAuto($id){
+        $this->smarty->assign('id', $id);
+                
+        $this->smarty->display('deleteAuto.tpl');
+    }
+
     public function editAuto($auto){
         $this->smarty->assign('auto', $auto);
 

@@ -1,4 +1,4 @@
-{include file="header.tpl"}<br>
+{include file="header.tpl"}
 
 {if isset($smarty.session.USER_ID)}
   <div class="item-body">

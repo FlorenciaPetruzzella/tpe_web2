@@ -2,16 +2,19 @@
 require_once './app/models/auto.Model.php';
 require_once './app/views/auto.View.php';
 require_once './app/helpers/auth.Helper.php';
+require_once './app/models/service.Model.php';
 
 class AutoController {
     private $model;
     private $view;
     private $authHelper;
+    private $modelService;
 
     public function __construct() {
         $this->model = new AutoModel();
         $this->view = new AutoView();
         $this->authHelper = new AuthHelper();
+        $this->modelService = new ServiceModel();
     }
 
     public function showAutos() {
@@ -39,8 +42,15 @@ class AutoController {
     }
 
     public function deleteAuto($id) {
-        $this->model->deleteAutoById($id);
-        header("Location: " . BASE_URL .'listAutos'); 
+        $cantidad = $this->modelService->getServices($id);
+
+        if($cantidad == 0){
+            $this->model->deleteAutoById($id);
+            header("Location: " . BASE_URL .'listAutos'); 
+        }
+        else{
+            $this->view->deleteAuto($id);
+        }
     }
 
     public function editAuto($id) {
