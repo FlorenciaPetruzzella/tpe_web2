@@ -14,6 +14,12 @@ class ServiceView {
         $this->smarty->display('serviceList.tpl');
     }
 
+    public function showService($service){
+        $this->smarty->assign('service', $service); 
+
+        $this->smarty->display('serviceDetail.tpl');
+    }
+
     public function showServicesById($services, $auto, $id) {
         $this->smarty->assign('count', count($services)); 
         $this->smarty->assign('services', $services);

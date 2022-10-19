@@ -84,13 +84,17 @@ switch ($params[0]) {
     case 'updateService':   
         $serviceController = new ServiceController();          
         $id = $params[1];
-        $id_auto = $params[2];
-        $serviceController->updateService($id, $id_auto);
+        $serviceController->updateService($id);
         break;
     case 'showServices':  
         $serviceController = new ServiceController();      
         $id = $params[1];
         $serviceController->showServicesById($id);
+        break;
+    case 'showServiceDetail':  
+        $serviceController = new ServiceController();      
+        $id = $params[1];
+        $serviceController->showServiceDetail($id);
         break;
     default:
         echo('404 Page not found');

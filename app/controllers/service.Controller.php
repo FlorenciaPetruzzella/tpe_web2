@@ -68,6 +68,12 @@ class ServiceController {
         header("Location: " . BASE_URL . 'listServices'); 
     }
 
+    public function showServiceDetail($id) {
+        session_start();
+        $service = $this->model->getService($id);
+        $this->view->showService($service);
+    }
+
 
     public function editService($id) {
         session_start();
@@ -76,7 +82,7 @@ class ServiceController {
     }
 
 
-    public function updateService($id, $id_auto) {
+    public function updateService($id) {
         if (isset($_POST['fecha']) && isset($_POST['km']) && isset($_POST['km_prox_service']) &&
         isset($_POST['gastos_repuestos']) && isset($_POST['gastos_mo']) && isset($_POST['descripcion'])) {
         $this->authHelper->checkLoggedIn();
@@ -90,7 +96,7 @@ class ServiceController {
 
         $this->model->updateServiceById($id, $fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion);
         
-        header("Location: " . BASE_URL . 'showServices/' .$id_auto);  
+        header("Location: " . BASE_URL . 'showServiceDetail/' .$id );  
         }
     }
 }

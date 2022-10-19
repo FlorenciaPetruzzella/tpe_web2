@@ -2,7 +2,7 @@
 
 <div class="item-body">
     <h1 class="list-unstyled">Modificando service...</h1>
-    <form action="updateService/{$service->id_service}/{$service->id_auto}" method="POST" class="my-4">
+    <form action="updateService/{$service->id_service}" method="POST" class="my-4">
         <div class="row">
 
             <div class="col-9">

@@ -16,6 +16,14 @@ class ServiceModel{
         return $services;
     }
 
+    public function getService($id) {
+        $query = $this->db->prepare("SELECT * FROM `service` WHERE `id_service`=?");
+        $query->execute([$id]);
+
+        $service = $query->fetch(PDO::FETCH_OBJ); 
+        return $service;
+    }
+
     public function insertService($id, $fecha, $km, $km_prox_service, $gastos_repuestos, $gastos_mo, $descripcion){
         $query = $this->db->prepare("INSERT INTO `service`(`id_auto`, `fecha`, `km`,`km_prox_service`,
                                     `gastos_repuestos`,`gastos_mo`,`descripcion`) VALUES (?, ?, ?, ?, ?, ?, ?)");
