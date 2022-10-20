@@ -1,5 +1,9 @@
 {include file="header.tpl"}<br>
 
+<div  class="item-body">
+    <p>Mostrando services de <b>{$auto->duenio}</b> - <b>{$auto->patente}</b> - <b>{$auto->modelo}</b> </p>
+</div>
+
 <div class="item-body">
   <ul class="list-group">
     <li class="list-group-item justify-content-between align-items-center">

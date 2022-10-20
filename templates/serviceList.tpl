@@ -6,11 +6,7 @@
             <tr>
                 <th scope="col">Dueño</th>
                 <th scope="col">Fecha</th>
-                <th scope="col">Kilometraje</th>
                 <th scope="col">Kilometraje Prox Service</th>
-                <th scope="col">Gastos Respuestos</th>
-                <th scope="col">Gastos Mano de Obra</th>
-                <th scope="col">Descripción</th>
             </tr>
         </thead>
         <tbody>
@@ -18,12 +14,11 @@
                 <tr>
                     <th scope="row">{$allService->duenio}</th>
                     <td>{$allService->fecha}</td>
-                    <td>{$allService->km}</td>
                     <td>{$allService->km_prox_service}</td>
-                    <td>{$allService->gastos_repuestos}</td>
-                    <td>{$allService->gastos_mo}</td>
-                    <td>{$allService->descripcion}</td>
                     <td>
+                        <a href='showServiceDetail/{$allService->id_service}/{$allService->id_auto}' type='button'
+                            class='btn btn-secondary btn-sm'>Mostrar
+                            detalle</a>
                         {if isset($smarty.session.USER_ID)}
                             <a href='deleteServiceList/{$allService->id_service}/{$allService->id_auto}' type='button'
                                 class='btn btn-danger btn-sm'>Borrar</a>

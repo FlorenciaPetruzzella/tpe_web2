@@ -31,6 +31,13 @@ class ServiceController {
         $allServices = $this->model->getServicesAutos();
         $this->view->showServices($allServices);
     }
+
+     public function showServiceDetail($id,$id_auto) {
+        session_start();
+        $service = $this->model->getService($id);
+        $auto = $this->modelAuto->getAutobyId($id_auto);
+        $this->view->showService($service,$auto,$id);
+    }
     
     public function addService($id) {
         if (isset($_POST['fecha']) && isset($_POST['km']) && isset($_POST['km_prox_service']) &&
@@ -68,11 +75,7 @@ class ServiceController {
         header("Location: " . BASE_URL . 'listServices'); 
     }
 
-    public function showServiceDetail($id) {
-        session_start();
-        $service = $this->model->getService($id);
-        $this->view->showService($service);
-    }
+   
 
 
     public function editService($id) {
