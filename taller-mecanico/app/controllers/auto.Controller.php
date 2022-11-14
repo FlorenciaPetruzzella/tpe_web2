@@ -44,7 +44,7 @@ class AutoController {
     public function deleteAuto($id) {
         $cantidad = $this->modelService->getServices($id);
 
-        if($cantidad == 0){
+        if(count($cantidad) == 0){
             $this->model->deleteAutoById($id);
             header("Location: " . BASE_URL .'listAutos'); 
         }

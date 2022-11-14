@@ -35,7 +35,7 @@ class CarApiController {
         }
 
         //Paginación
-        if ((isset($_GET["page"]))>0  && isset($_GET["limit"])>0) {
+        if (isset($_GET["page"]) && isset($_GET["limit"])) {
 
             $page = mb_strtolower($_GET["page"]);
             $limit = mb_strtolower($_GET["limit"]);
