@@ -9,8 +9,7 @@ class CarModel {
 
 
     public function getAll($sort, $order, $limit, $page, $filterOwner) {
-        
-        $params = []; 
+         
         $query_sentence = "SELECT * FROM `auto` ";
         
         if($filterOwner != null){
@@ -31,7 +30,7 @@ class CarModel {
         }
 
         $query = $this->db->prepare($query_sentence);
-        $query->execute($params);
+        $query->execute();
         $cars = $query->fetchAll(PDO::FETCH_OBJ); 
         return $cars;
     }
