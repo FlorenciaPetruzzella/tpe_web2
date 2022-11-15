@@ -20,14 +20,28 @@ class CarApiController {
     }
 
     public function getCars($params = null) {
-        $column = array('id_auto', 'patente', 'duenio', 'modelo');
+        
+
+         //Filtro por dueño 
+         if (isset($_GET["filterOwner"])) {
+
+            $filterOwner = mb_strtolower($_GET["filterOwner"]);
+        }
+        else {
+            $filterOwner = null;
+        }
+
+      
 
         //Ordenamiento
-        if (isset($_GET['sort']) && isset($_GET['order']) && (isset($_GET['order']) =='asc' || 
-            isset($_GET['order']) =='desc') && (in_array(isset($_GET['sort']), $column))) {
-
+        if (isset($_GET['sort']) && isset($_GET['order'])) {
+            $column = array('id_auto', 'patente', 'duenio', 'modelo');
             $sort = mb_strtolower($_GET['sort']);
             $order = mb_strtolower($_GET['order']);
+
+            if (!(in_array($sort, $column)) || ($order != 'asc') && ($order != 'desc')) {
+                return $this->view->response("El campo de orden o tipo de orden son inválidos", 400);
+            }
         }
         else {
             $sort = null;
@@ -39,23 +53,17 @@ class CarApiController {
 
             $page = intval($_GET["page"]);
             $limit = intval($_GET["limit"]);
+
+            if($page<1 || $limit<1 || !is_numeric($page) || !is_numeric($limit)){
+               return $this->view->response("La página y el límite deben ser números mayor a cero", 400);
+            }
         }
         else {
             $page = null;
             $limit = null;
         }
 
-        //Filtro por dueño 
-        if (isset($_GET["filterOwner"])) {
-
-            $filterOwner = mb_strtolower($_GET["filterOwner"]);
-        }
-        else {
-            $filterOwner = null;
-        }
-
         $cars = $this->model->getAll($sort, $order, $limit, $page, $filterOwner);
-    
         if($cars)
             return $this->view->response($cars, 200);
         else

@@ -12,19 +12,15 @@ class CarModel {
          
         $query_sentence = "SELECT * FROM `auto` ";
         
-        if($filterOwner != null){
+        if(!empty($filterOwner)){
             $query_sentence .= "WHERE `duenio` LIKE '%$filterOwner%'";
         }
 
-        if($sort != null && $order != null){
+        if(!empty($sort) && !empty($order)){
             $query_sentence .= " ORDER BY $sort $order";
         }
 
-        if($page == null){
-            $page=0;
-        }
-
-        if($limit != null){
+        if(!empty($limit)){
             $offset = $page * $limit - $limit;
             $query_sentence .= " LIMIT  $limit OFFSET $offset";
         }
